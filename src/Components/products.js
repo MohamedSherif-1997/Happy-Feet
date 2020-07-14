@@ -61,7 +61,7 @@ export default function Products(props) {
   const products = props.products;
   const classes = useStyles();
   return (
-    <div container className={classes.cardContainer}>
+    <div className={classes.cardContainer}>
       {products.length > 0 ? (
         products.map((product, index) => (
           <Card className={classes.root} key={index}>
@@ -76,29 +76,25 @@ export default function Products(props) {
               <Typography gutterBottom component="h4">
                 {product.name}
               </Typography>
+              <Chip
+                variant="outlined"
+                size="small"
+                label={product.rating}
+                icon={<StarRateIcon style={{ color: "white" }} />}
+                className={classes.rating}
+              />
+              <span className={classes.button}>
+                <Button size="small" className={classes.buyButton}>
+                  Buy
+                </Button>
+              </span>
               <Typography>
-                <Chip
-                  variant="outlined"
-                  size="small"
-                  label={product.rating}
-                  icon={<StarRateIcon style={{ color: "white" }} />}
-                  className={classes.rating}
-                />
-                <span className={classes.button}>
-                  <Button size="small" className={classes.buyButton}>
-                    Buy
-                  </Button>
+                &#8377;
+                {product.price - (product.price * product.discount) / 100}
+                <s className={classes.price}>{`${product.price}`}</s>
+                <span className={classes.discount}>
+                  {product.discount}&#x25; off
                 </span>
-              </Typography>
-              <Typography>
-                <p>
-                  &#8377;
-                  {(product.price * product.discount) / 100}
-                  <s className={classes.price}>{`${product.price}`}</s>
-                  <span className={classes.discount}>
-                    {product.discount}&#x25; off
-                  </span>
-                </p>
               </Typography>
             </CardContent>
           </Card>

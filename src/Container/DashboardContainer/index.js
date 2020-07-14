@@ -41,89 +41,115 @@ const style = {
     backgroundColor: "floralwhite",
   },
   sort: {
-    height: "100px",
     backgroundColor: "floralwhite",
+    paddingTop: "50px",
+    paddingBottom: "20px",
   },
 };
 
-const products = [
-  {
-    name: "Nike React Element 87 Anthracite Black",
-    image: nick1,
-    price: 1200,
-    discount: 50,
-    brand: "Nike",
-    rating: 4.2,
-  },
-  {
-    name: "Nie Announces Special Edition",
-    image: nick2,
-    price: 800,
-    discount: 50,
-    brand: "Nike",
-    rating: 4.2,
-  },
-  {
-    name: "Nike VTR sneakers Red/Black",
-    image: nick3,
-    price: 450,
-    discount: 50,
-    brand: "Nike",
-    rating: 4.2,
-  },
-  {
-    name: "Tan Men Lee Cooper Shoes",
-    image: leeCooper1,
-    price: 1200,
-    discount: 50,
-    brand: "LeeCooper",
-    rating: 4.2,
-  },
-  {
-    name: "Brown men Leecooper Shoes",
-    image: leeCooper2,
-    price: 800,
-    discount: 50,
-    brand: "LeeCooper",
-    rating: 4.2,
-  },
-  {
-    name: "Lee Cooper Men's Leather Sneakers",
-    image: leeCooper3,
-    price: 450,
-    discount: 50,
-    brand: "LeeCooper",
-    rating: 3.8,
-  },
-  {
-    name: "Reebok shoes for Men – Designed",
-    image: reeBok,
-    price: 1200,
-    discount: 50,
-    brand: "Reebok",
-    rating: 4.6,
-  },
-  {
-    name: "Puma mens-Blue/Black",
-    image: puma1,
-    price: 800,
-    discount: 50,
-    brand: "Puma",
-    rating: 3.0,
-  },
-  {
-    name: "puma suede shoes",
-    image: puma2,
-    price: 450,
-    discount: 50,
-    brand: "Puma",
-    rating: 4.0,
-  },
-];
-
 class DashboardContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [
+        {
+          name: "Nike React Element 87 Anthracite",
+          image: nick1,
+          price: 1200,
+          discount: 50,
+          brand: "Nike",
+          rating: 4.2,
+        },
+        {
+          name: "Nike Announces Special Edition",
+          image: nick2,
+          price: 800,
+          discount: 25,
+          brand: "Nike",
+          rating: 4.2,
+        },
+        {
+          name: "Nike VTR sneakers Red/Black",
+          image: nick3,
+          price: 550,
+          discount: 40,
+          brand: "Nike",
+          rating: 4.2,
+        },
+        {
+          name: "Tan Men Lee Cooper Shoes",
+          image: leeCooper1,
+          price: 1000,
+          discount: 50,
+          brand: "LeeCooper",
+          rating: 4.2,
+        },
+        {
+          name: "Brown men Leecooper Shoes",
+          image: leeCooper2,
+          price: 700,
+          discount: 50,
+          brand: "LeeCooper",
+          rating: 4.2,
+        },
+        {
+          name: "Lee Cooper Men's Leather Sneakers",
+          image: leeCooper3,
+          price: 1800,
+          discount: 40,
+          brand: "LeeCooper",
+          rating: 3.8,
+        },
+        {
+          name: "Reebok shoes for Men – Designed",
+          image: reeBok,
+          price: 400,
+          discount: 50,
+          brand: "Reebok",
+          rating: 4.6,
+        },
+        {
+          name: "Puma mens-Blue/Black",
+          image: puma1,
+          price: 1500,
+          discount: 10,
+          brand: "Puma",
+          rating: 3.0,
+        },
+        {
+          name: "puma suede shoes",
+          image: puma2,
+          price: 450,
+          discount: 5,
+          brand: "Puma",
+          rating: 4.0,
+        },
+      ],
+      disabled: true,
+    };
+  }
+
+  handlePriceHigh = () => {
+    let priceHignToLowProducts = this.state.products.sort((object1, object2) =>
+      object1.price < object2.price ? 1 : -1
+    );
+    this.setState({ products: priceHignToLowProducts, disabled: false });
+  };
+
+  handlePriceLow = () => {
+    let priceHignToLowProducts = this.state.products.sort((object1, object2) =>
+      object1.price > object2.price ? 1 : -1
+    );
+    this.setState({ products: priceHignToLowProducts, disabled: false });
+  };
+
+  handleRelevence = () => {
+    this.setState({ products: this.state.products, disabled: true });
+  };
+
   render() {
     const { classes } = this.props;
+    const products = this.state.products;
     return (
       <>
         <div className={classes.mainFlex}>
@@ -132,7 +158,12 @@ class DashboardContainer extends Component {
           </div>
           <div className={classes.secondFlex}>
             <div className={classes.sort}>
-              <Sort />
+              <Sort
+                handleRelevence={this.handleRelevence}
+                handlePriceLow={this.handlePriceLow}
+                handlePriceHigh={this.handlePriceHigh}
+                disabled={this.state.disabled}
+              />
             </div>
             <div className={classes.product}>
               <Products products={products} />
