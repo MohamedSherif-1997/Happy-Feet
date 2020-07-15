@@ -58,7 +58,7 @@ const useStyles = makeStyles({
 });
 
 export default function Products(props) {
-  const products = props.products;
+  const { products, history } = props;
   const classes = useStyles();
   return (
     <div className={classes.cardContainer}>
@@ -84,7 +84,13 @@ export default function Products(props) {
                 className={classes.rating}
               />
               <span className={classes.button}>
-                <Button size="small" className={classes.buyButton}>
+                <Button
+                  size="small"
+                  className={classes.buyButton}
+                  onClick={() => {
+                    history.push("/happy-shoes/payment");
+                  }}
+                >
                   Buy
                 </Button>
               </span>
@@ -108,4 +114,5 @@ export default function Products(props) {
 
 Products.propTypes = {
   products: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
 };

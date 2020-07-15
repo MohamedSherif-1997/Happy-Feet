@@ -190,7 +190,7 @@ class DashboardContainer extends Component {
               />
             </div>
             <div className={classes.product}>
-              <Products products={products} />
+              <Products products={products} history={history} />
             </div>
           </div>
         </div>
