@@ -8,7 +8,7 @@ import {
 
 import history from "./history";
 import DashboardContainer from "./Container/DashboardContainer";
-import MyOrders from "./Container/MyOrders";
+import MyOrdersDashboard from "./Container/MyOrders";
 import Payment from "./Container/Payment";
 
 function App() {
@@ -20,7 +20,11 @@ function App() {
           path="/happy-shoes/dashboard"
           component={DashboardContainer}
         />
-        <Route exact path="/happy-shoes/my-orders" component={MyOrders} />
+        <Route
+          exact
+          path="/happy-shoes/my-orders"
+          component={MyOrdersDashboard}
+        />
         <Route exact path="/happy-shoes/payment" component={Payment} />
         <Redirect to="/happy-shoes/dashboard" />
       </Switch>
