@@ -1,27 +1,31 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
+import history from "./history";
 import DashboardContainer from "./Container/DashboardContainer";
+import MyOrders from "./Container/MyOrders";
+import Payment from "./Container/Payment";
 
-const AppStyle = {
-  DashboardContainer: {
-    height: "100%",
-    backgroundColor: "white",
-    padding: "5px",
-  },
-};
-
-function App(props) {
+function App() {
   return (
-    <div className={props.classes.DashboardContainer}>
-      <DashboardContainer />
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route
+          exact
+          path="/happy-shoes/dashboard"
+          component={DashboardContainer}
+        />
+        <Route exact path="/happy-shoes/my-orders" component={MyOrders} />
+        <Route exact path="/happy-shoes/payment" component={Payment} />
+        <Redirect to="/happy-shoes/dashboard" />
+      </Switch>
+    </Router>
   );
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(AppStyle)(App);
+export default App;

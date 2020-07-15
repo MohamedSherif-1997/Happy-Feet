@@ -19,6 +19,11 @@ import leeCooper3 from "../../images/shoes/leeCooper3.jpg";
 import reeBok from "../../images/shoes/reeBok1.jpg";
 
 const style = {
+  DashboardContainer: {
+    height: "100%",
+    backgroundColor: "white",
+    padding: "5px",
+  },
   mainFlex: {
     display: "flex",
     padding: "5px",
@@ -151,7 +156,7 @@ class DashboardContainer extends Component {
     const { classes } = this.props;
     const products = this.state.products;
     return (
-      <>
+      <div className={classes.DashboardContainer}>
         <div className={classes.mainFlex}>
           <div className={classes.filter}>
             <Filters />
@@ -170,7 +175,7 @@ class DashboardContainer extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
