@@ -106,6 +106,11 @@ class Filters extends Component {
           <ColorsPicker color={color} checked={checked} />
         </div>
         <Divider />
+        <div className={classes.clear}>
+          <Button type="reset" className={classes.clearButton}>
+            Clear
+          </Button>
+        </div>
       </div>
     );
   }
