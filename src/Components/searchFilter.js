@@ -1,4 +1,5 @@
 import React from "react";
+
 import useAutocomplete from "@material-ui/lab/useAutocomplete";
 import NoSsr from "@material-ui/core/NoSsr";
 import CheckIcon from "@material-ui/icons/Check";
@@ -140,7 +141,6 @@ export default function SearchFilter() {
     setAnchorEl,
   } = useAutocomplete({
     id: "brand",
-    // placeholder='select brand',
     multiple: true,
     options: BRAND_NAMES,
     getOptionLabel: (option) => option,

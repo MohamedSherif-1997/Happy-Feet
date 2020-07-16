@@ -21,36 +21,22 @@ const style = {
 };
 
 class ColorsPicker extends Component {
-  state = {
-    color: "",
-  };
-
-  handleChange = (event) => {
-    this.setState({ color: event.target.value });
-  };
-
-  checked = (e) => {
-    console.log(e.target.value);
-  };
-
   render() {
-    const { classes } = this.props;
-    const color = this.state.color;
+    const { classes, color, checked } = this.props;
 
     return (
-      <FormControl component="fieldset" onChange={this.checked}>
+      <FormControl component="fieldset" onChange={checked}>
         <FormLabel className={classes.color}>Colors</FormLabel>
         <RadioGroup
           aria-label="color"
           name="color"
           value={color}
-          onChange={this.handleChange}
           className={classes.radioGroup}
         >
           <FormControlLabel value="Black" control={<Radio />} label="Black" />
           <FormControlLabel value="Red" control={<Radio />} label="Red" />
           <FormControlLabel value="Blue" control={<Radio />} label="Blue" />
-          <FormControlLabel value="Brown" control={<Radio />} label="Blue" />
+          <FormControlLabel value="Brown" control={<Radio />} label="Brown" />
         </RadioGroup>
       </FormControl>
     );
@@ -59,6 +45,8 @@ class ColorsPicker extends Component {
 
 ColorsPicker.propTypes = {
   classes: PropTypes.object.isRequired,
+  color: PropTypes.string.isRequired,
+  checked: PropTypes.func.isRequired,
 };
 
 export default withStyles(style)(ColorsPicker);

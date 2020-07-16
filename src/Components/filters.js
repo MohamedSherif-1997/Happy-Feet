@@ -50,7 +50,15 @@ const style = {
 
 class Filters extends Component {
   render() {
-    const { min, max, classes } = this.props;
+    const {
+      min,
+      max,
+      classes,
+      handleMaxChange,
+      handleMinChange,
+      color,
+      checked,
+    } = this.props;
     return (
       <div className={classes.filter}>
         <div className={classes.title}>Filters</div>
@@ -60,30 +68,30 @@ class Filters extends Component {
           <div>
             <NativeSelect
               value={min}
-              // onChange={handleChange}
+              onChange={handleMinChange}
               inputProps={{
                 name: "min",
                 id: "min-native-label-placeholder",
               }}
             >
               <option value={0}>Min</option>
+              <option value={200}>200</option>
               <option value={500}>500</option>
-              <option value={1000}>800</option>
-              <option value={2000}>1000</option>
+              <option value={800}>800</option>
             </NativeSelect>
           </div>
           <div className={classes.between}>to</div>
           <div>
             <NativeSelect
               value={max}
-              // onChange={handleChange}
+              onChange={handleMaxChange}
               inputProps={{
                 name: "max",
                 id: "max-native-label-placeholder",
               }}
             >
-              <option value={2000}>Max</option>
-              <option value={1000}>1200</option>
+              <option value={2500}>Max</option>
+              <option value={1200}>1200</option>
               <option value={1500}>1500</option>
               <option value={2000}>2000</option>
             </NativeSelect>
@@ -95,14 +103,9 @@ class Filters extends Component {
         </div>
         <Divider />
         <div>
-          <ColorsPicker />
+          <ColorsPicker color={color} checked={checked} />
         </div>
         <Divider />
-        <div className={classes.clear}>
-          <Button type="reset" className={classes.clearButton}>
-            Clear
-          </Button>
-        </div>
       </div>
     );
   }
@@ -110,6 +113,10 @@ class Filters extends Component {
 
 Filters.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleMaxChange: PropTypes.func.isRequired,
+  handleMinChange: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+  checked: PropTypes.func.isRequired,
 };
 
 export default withStyles(style)(Filters);
