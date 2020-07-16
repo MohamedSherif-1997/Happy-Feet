@@ -96,7 +96,7 @@ class DashboardContainer extends Component {
       if (min <= rate && max >= rate) {
         return 1;
       } else {
-        return;
+        return 0;
       }
     });
     this.setState({
