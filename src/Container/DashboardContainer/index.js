@@ -94,7 +94,9 @@ class DashboardContainer extends Component {
     let priceRangeProducts = products.filter((object1) => {
       let rate = object1.price - (object1.price * object1.discount) / 100;
       if (min <= rate && max >= rate) {
-        return true;
+        return 1;
+      } else {
+        return -1;
       }
     });
     this.setState({
